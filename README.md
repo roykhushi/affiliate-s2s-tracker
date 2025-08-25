@@ -11,14 +11,17 @@ An affiliate postback tracking system built with Node.js/Express backend, Postgr
 
 ## Screenshots
 
-### Dashboard View
-![Dashboard](./images/dashboard.png)
+### Home Page
+<img width="1891" height="828" alt="Screenshot 2025-08-25 190405" src="https://github.com/user-attachments/assets/bfe6a2d7-ea44-4291-a008-ce540e246c39" />
+
 
 ### Postback URL Generator
-![Postback URL](./images/postback-url.png)
+<img width="1898" height="830" alt="Screenshot 2025-08-25 190455" src="https://github.com/user-attachments/assets/63adcbc8-77c8-46e1-84d2-e8c27c3ca8cf" />
 
-### Homepage
-![Homepage](./images/homepage.png)
+
+### Dashboard View
+<img width="1900" height="819" alt="Screenshot 2025-08-25 190428" src="https://github.com/user-attachments/assets/a59af3a3-95a5-48e8-9e0e-ab42fe8c2d8f" />
+
 
 ## Tech Stack
 
