@@ -1,7 +1,7 @@
 const pool = require('../database/db');
 
 async function testConnection() {
-  console.log('🔍 Testing database connection...\n');
+  console.log('Testing database connection...\n');
 
   try {
     const client = await pool.connect();

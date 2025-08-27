@@ -35,7 +35,7 @@ async function seedDatabase() {
       
       try {
         if (statement.toLowerCase().includes('create database')) {
-          console.log(`⏭Skipping database creation statement (${i + 1}/${statements.length})`);
+          console.log(`Skipping database creation statement (${i + 1}/${statements.length})`);
           continue;
         }
         
@@ -43,30 +43,29 @@ async function seedDatabase() {
         
         if (statement.toLowerCase().includes('create table')) {
           const tableName = statement.match(/create table (\w+)/i)?.[1];
-          console.log(`   Creating table: ${tableName}`);
+          console.log(`Creating table: ${tableName}`);
         } else if (statement.toLowerCase().includes('insert into')) {
           const tableName = statement.match(/insert into (\w+)/i)?.[1];
-          console.log(`   Inserting data into: ${tableName}`);
+          console.log(`Inserting data into: ${tableName}`);
         }
         
         await client.query(statement);
         console.log(`Success`);
         
       } catch (error) {
-        if (error.code === '42P07') { // Table already exists
+        if (error.code === '42P07') { // table already exists
           const tableName = statement.match(/create table (\w+)/i)?.[1];
           console.log(` Table '${tableName}' already exists, skipping`);
-        } else if (error.code === '23505') { // Unique constraint violation
+        } else if (error.code === '23505') { // unique constraint violation
           console.log(` Data already exists, skipping duplicate insert`);
         } else {
           console.error(` Error in statement ${i + 1}:`);
           console.error(` ${error.message}`);
-          throw error; // Re-throw unexpected errors
+          throw error; 
         }
       }
     }
     
-    // Verify the seeding by checking table contents
     console.log('\n Verifying seeded data:');
     
     const tables = ['affiliates', 'clicks', 'conversions'];
@@ -75,10 +74,9 @@ async function seedDatabase() {
         const result = await client.query(`SELECT COUNT(*) as count FROM ${table}`);
         console.log(`   - ${table}: ${result.rows[0].count} rows`);
         
-        // Show sample data for affiliates
         if (table === 'affiliates' && parseInt(result.rows[0].count) > 0) {
           const sampleData = await client.query('SELECT id, name FROM affiliates LIMIT 3');
-          console.log('   Sample affiliates:');
+          console.log('Sample affiliates:');
           sampleData.rows.forEach(row => {
             console.log(`     ${row.id}: ${row.name}`);
           });
